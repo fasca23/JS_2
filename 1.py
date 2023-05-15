@@ -1,18 +1,26 @@
 import time
 
 def simple(n):
-    start = time.time()
+    time_start = time.time()
+    
     simple_n = []
-    for i in range(2, n+1):
-        for j in range(2 , i):
-            if i % j == 0:
-                break    
-        else: 
-            simple_n.append(i)
-    # Время выполнения в миллисекундах
-    end = (time.time() - start)*1000
-    return end
+    start = 2
+    while len(simple_n) < n:
         
-print(simple(100000))
+        flag = False
+        
+        for i in simple_n:
+            if start % i == 0 and (start / i != 1):
+                flag = True
+                break
+            
+        if flag == False:
+            simple_n.append(start)
 
-# print (round(2.75, 1))
+        start += 1
+            
+    end = (time.time() - time_start)*1000
+    print(end)
+    return simple_n
+        
+print(simple(200))
